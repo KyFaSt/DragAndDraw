@@ -1,5 +1,6 @@
 package com.bignerdranch.android.draganddraw.app;
 
+import android.graphics.Paint;
 import android.graphics.PointF;
 
 public class Box {
@@ -7,7 +8,7 @@ public class Box {
     private PointF mCurrent;
 
 
-    public Box(PointF origin) {
+    public Box(PointF origin, Paint mBoxPaint) {
         mOrigin = mCurrent = origin;
     }
 
@@ -15,7 +16,7 @@ public class Box {
         return mCurrent;
     }
 
-    public void setCurrent(PointF current) {
+    public void setCurrent(PointF current, Paint mBoxPaint) {
         mCurrent = current;
     }
 

@@ -30,9 +30,6 @@ public class BoxDrawingView  extends View {
     //used when inflating the view from XML
     public BoxDrawingView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        //paint the boxes random color
-
-
 
         //paint bkgrnd off white
         mBackgroundPaint = new Paint();
@@ -41,21 +38,22 @@ public class BoxDrawingView  extends View {
 
     public boolean onTouchEvent(MotionEvent event) {
         PointF curr = new PointF(event.getX(), event.getY());
+        Paint paint = mBoxPaint;
 
-        Log.i(TAG, "Received event at x=" + curr.x + ", y=" + curr.y+ ":");
+        Log.i(TAG, "Received event at x=" + curr.x + ", y=" + curr.y+ ": color" + paint);
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 Log.i(TAG, "ACTION_DOWN");
                 //reset drawing state
-                mCurrentBox = new Box(curr);
+                mCurrentBox = new Box(curr, paint);
                 mBoxes.add(mCurrentBox);
                 break;
 
             case MotionEvent.ACTION_MOVE:
                 Log.i(TAG, "ACTION_MOVE");
                 if (mCurrentBox != null) {
-                    mCurrentBox.setCurrent(curr);
+                    mCurrentBox.setCurrent(curr, paint);
                     invalidate();
                 }
                 break;
